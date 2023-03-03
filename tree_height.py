@@ -14,16 +14,26 @@ def compute_height(n, parents):
 
 def main():
     input_method = input("From keyboard (I) or from files (F): ")
+
     if input_method == "I":
-        nodes = input()
-        print(nodes)
+        n = int(input())
+        parents = input()
+        parents = parents.split()
+        print(n, parents)
+    
     elif input_method == "F":
         file_name = input("File name: ")
         if file_name.__contains__("a"):
+            print("Input error")
             return
         with open("test/"+file_name, "r") as f:
-            nodes = f.read()
-        print(nodes)
+            n = int(f.readline())
+            parents = numpy.fromstring(f.readline(), dtype = int, sep = " ")
+        print(n, parents)
+
+    else:
+        print("Input error")
+        return
 
     # implement input form keyboard and from files
     # let user input file name to use, don't allow file names with letter a
