@@ -13,10 +13,8 @@ def compute_height(n, parents):
         while current != -1:
             if store_height[current] != 0:
                 height += store_height[current]
-                count += 1
                 break
             height += 1
-            count += 1
             current = parents[current]
         store_height[i] = height
 
