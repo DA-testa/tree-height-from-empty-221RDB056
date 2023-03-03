@@ -21,7 +21,7 @@ def compute_height(n, parents):
 
 
 def main():
-    input_method = input("From keyboard (I) or from files (F): ")
+    input_method = input()
 
     if input_method == "I":
         n = int(input())
