@@ -15,13 +15,15 @@ def compute_height(n, parents):
         curr = i
         height = 0
         while curr != -1:
+            if store_height[curr] != 0:
+                height += store_height[curr]
+                break
             height += 1
             curr = parents[curr]
         store_height[i] = height
     for i in range(n):
         if max_height < store_height[i]:
             max_height = store_height[i]
-    print(store_height, store_usage)
     return int(max_height)
 
 
