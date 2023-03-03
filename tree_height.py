@@ -1,5 +1,3 @@
-# python3
-
 import sys
 import threading
 import numpy
@@ -8,19 +6,20 @@ import numpy
 def compute_height(n, parents):
     max_height = 0
     store_height = numpy.zeros(n)
-    store_usage = numpy.zeros(n)
+
     for i in range(n):
-        if store_usage[i] == 1:
-            continue
-        curr = i
+        current = i
         height = 0
-        while curr != -1:
-            if store_height[curr] != 0:
-                height += store_height[curr]
+        while current != -1:
+            if store_height[current] != 0:
+                height += store_height[current]
+                count += 1
                 break
             height += 1
-            curr = parents[curr]
+            count += 1
+            current = parents[current]
         store_height[i] = height
+
     for i in range(n):
         if max_height < store_height[i]:
             max_height = store_height[i]
@@ -53,10 +52,7 @@ def main():
     
     print(compute_height(n, parents))
 
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
-sys.setrecursionlimit(10**7)  # max depth of recursion
-threading.stack_size(2**27)   # new thread will get stack of such size
+
+sys.setrecursionlimit(10**7)
+threading.stack_size(2**27)
 threading.Thread(target=main).start()
-# print(numpy.array([1,2,3]))
