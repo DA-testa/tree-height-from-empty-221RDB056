@@ -6,10 +6,18 @@ import numpy
 
 
 def compute_height(n, parents):
-    # Write this function
     max_height = 0
-    # Your code here
-    return max_height
+    store_heigth = numpy.zeros(n)
+    store_usage = numpy.zeros(n)
+    for i in range(n):
+        if store_usage[i] == 1:
+            break
+        store_usage[i] = 1
+        store_heigth[parents[i]] += 1
+    for i in range(n):
+        if max_height < store_heigth[i]:
+            max_height = store_heigth[i]
+    return int(max_height)
 
 
 def main():
@@ -30,6 +38,7 @@ def main():
                 parents = numpy.fromstring(f.readline(), dtype = int, sep = " ")
         except FileNotFoundError:
             print("File not found")
+            return
 
     else:
         print("Input error")
