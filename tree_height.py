@@ -7,16 +7,21 @@ import numpy
 
 def compute_height(n, parents):
     max_height = 0
-    store_heigth = numpy.zeros(n)
+    store_height = numpy.zeros(n)
     store_usage = numpy.zeros(n)
     for i in range(n):
         if store_usage[i] == 1:
-            break
-        store_usage[i] = 1
-        store_heigth[parents[i]] += 1
+            continue
+        curr = i
+        height = 0
+        while curr != -1:
+            height += 1
+            curr = parents[curr]
+        store_height[i] = height
     for i in range(n):
-        if max_height < store_heigth[i]:
-            max_height = store_heigth[i]
+        if max_height < store_height[i]:
+            max_height = store_height[i]
+    print(store_height, store_usage)
     return int(max_height)
 
 
@@ -28,7 +33,7 @@ def main():
         parents = numpy.fromstring(input(), dtype = int, sep=" ")
     
     elif input_method.__contains__("F"):
-        file_name = input("File name: ")
+        file_name = input()
         if file_name.__contains__("a"):
             print("Input error")
             return
