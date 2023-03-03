@@ -23,11 +23,11 @@ def compute_height(n, parents):
 def main():
     input_method = input()
 
-    if input_method == "I":
+    if input_method.__contains__("I"):
         n = int(input())
         parents = numpy.fromstring(input(), dtype = int, sep=" ")
     
-    elif input_method == "F":
+    elif input_method.__contains__("F"):
         file_name = input("File name: ")
         if file_name.__contains__("a"):
             print("Input error")
